@@ -17,6 +17,10 @@
 ;; ["a" ["b"] "c"]
 ;; '((((:a))))
 
+;; filter non-uppercase characters out of string
+(fn [s] (apply str (filter #(Character/isUpperCase %) (seq s))))
+#(apply str (re-seq #"[A-Z]" %))
+
 
 
 (defn -main
