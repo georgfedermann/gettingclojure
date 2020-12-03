@@ -1,7 +1,20 @@
 (ns prime.core
   (:gen-class))
 
+(def books ["War and Peace", "The secret garden", "1984", "Fahrenheit 451"])
 (def book {:title "War and Peace" :author "Leo Tolstoy" :published 1869})
+
+;; call-threading: enhance this using call-threading
+(defn transform [person]
+  (update (assoc person :hair-color :gray) :age inc))
+;; call-threading applied
+(defn transform-thread [person]
+  (-> person
+    (assoc :hair-color :gray)
+    (update :age inc)))
+
+;; syntactical sugar: map keys to arg variables
+(defn print-book [{:keys [author title]}] (println "Book" title "authored by" author))
 
 ;; flatten a sequence
 (reduce (fn add-element [collection element]
